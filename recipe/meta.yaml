@@ -1,4 +1,4 @@
-{% set version = "1.16.1" %}
+{% set version = "1.17.1" %}
 {% set major = version.split('.')[0] %}
 {% set minor = version.split('.')[1] %}
 {% set patch = version.split('.')[2] %}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/c-ares/c-ares/releases/download/cares-{{ major }}_{{ minor }}_{{ patch }}/c-ares-{{ version }}.tar.gz
-  sha256: d08312d0ecc3bd48eee0a4cc0d2137c9f194e0a28de2028928c0f6cae85f86ce
+  sha256: d73dd0f6de824afd407ce10750ea081af47eba52b8a6cb307d220131ad93fc40
 
 build:
   number: 0  
