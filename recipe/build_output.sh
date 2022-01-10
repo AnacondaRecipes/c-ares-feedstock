@@ -10,6 +10,10 @@ else
   CARES_SHARED=ON
 fi
 
+if [[ "${target_platform}" == linux-* ]]; then
+  CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_AR=${AR}"
+fi
+
 cmake ${CMAKE_ARGS} -G"$CMAKE_GENERATOR" \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX="$PREFIX" \
