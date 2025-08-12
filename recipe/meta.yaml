@@ -29,6 +29,9 @@ outputs:
     requirements:
       build:
         - {{ compiler("c") }}
+        - {{ stdlib('c') }}
+        # https://github.com/c-ares/c-ares/blob/v1.34.5/CMakeLists.txt#L49
+        - {{ compiler("cxx") }}
         - cmake  # [win]
         # cmake on unix depends on c-ares. This breaks the cycle.
         - cmake-no-system  # [unix]
@@ -53,6 +56,9 @@ outputs:
     requirements:
       build:
         - {{ compiler("c") }}
+        - {{ stdlib('c') }}
+        # https://github.com/c-ares/c-ares/blob/v1.34.5/CMakeLists.txt#L49
+        - {{ compiler("cxx") }}
         - cmake  # [win]
         # cmake on unix depends on c-ares. This breaks the cycle.
         - cmake-no-system  # [unix]
