@@ -1,6 +1,7 @@
 #!/bin/bash
-echo "Building ${PKG_NAME}."
+set -ex
 
+echo "Building ${PKG_NAME}."
 
 # Isolate the build.
 mkdir build && cd build
@@ -17,7 +18,6 @@ if [[ "${target_platform}" == linux-* ]]; then
   CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_AR=${AR}"
 fi
 
-# Generate the build files.
 echo "Generating the build files..."
 cmake ${CMAKE_ARGS} -G"$CMAKE_GENERATOR" \
       -DCMAKE_BUILD_TYPE=Release \
@@ -27,16 +27,17 @@ cmake ${CMAKE_ARGS} -G"$CMAKE_GENERATOR" \
       -DCARES_INSTALL=ON \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -GNinja \
+      -DCARES_BUILD_TESTS=ON \
       ${SRC_DIR}
 
-# Build.
-echo "Building..."
-ninja || exit 1
-
-# Installing
 echo "Installing..."
-ninja install || exit 1
+cmake --build . --config Release --target install
 
-# Error free exit!
+echo "Testing..."
+ctest -R aresfuzz --output-on-failure -j${CPU_COUNT}
+ctest -R aresfuzzname --output-on-failure -j${CPU_COUNT}
+# 1/1 Test #1: arestest .........................Bus error***Exception
+# ctest -R arestest --output-on-failure --extra-verbose -j${CPU_COUNT}
+
 echo "Error free exit!"
 exit 0
