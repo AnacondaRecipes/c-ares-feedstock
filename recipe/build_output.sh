@@ -44,7 +44,8 @@ if [[ "${target_platform}" == osx-* ]]; then
     # Which is: 0
   # result.status_
     # Which is: 4
-./bin/arestest --gtest_filter=-DefaultChannelTest.LiveSearchANY:DefaultChannelTest.LiveSearchANY_virtualized
+# ./bin/arestest --gtest_filter=-DefaultChannelTest.LiveSearchANY:DefaultChannelTest.LiveSearchANY_virtualized
+ctest -R arestest --output-on-failure --extra-verbose -j${CPU_COUNT}
 fi
 
 echo "Error free exit!"
