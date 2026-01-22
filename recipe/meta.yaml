@@ -31,7 +31,7 @@ outputs:
       build:
         - {{ compiler("c") }}
         - {{ stdlib('c') }}
-        # C++ requers for tests during a build. Toolchain-proper
+        # C++ required for tests during a build. Toolchain-proper
         - {{ compiler("cxx") }}
         - cmake  # [win]
         # cmake on unix depends on c-ares. This breaks the cycle.
@@ -58,7 +58,7 @@ outputs:
       build:
         - {{ compiler("c") }}
         - {{ stdlib('c') }}
-        # C++ requers for tests during a build. Toolchain-proper
+        # C++ required for tests during a build. Toolchain-proper
         - {{ compiler("cxx") }}
         - cmake  # [win]
         # cmake on unix depends on c-ares. This breaks the cycle.
