@@ -13,6 +13,7 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler("c") }}
     - cmake  # [win]
     # cmake on unix depends on c-ares. This breaks the cycle.
@@ -30,7 +31,7 @@ outputs:
       build:
         - {{ compiler("c") }}
         - {{ stdlib('c') }}
-        # C++ requers for tests during a build
+        # C++ requers for tests during a build. Toolchain-proper
         - {{ compiler("cxx") }}
         - cmake  # [win]
         # cmake on unix depends on c-ares. This breaks the cycle.
@@ -57,7 +58,7 @@ outputs:
       build:
         - {{ compiler("c") }}
         - {{ stdlib('c') }}
-        # https://github.com/c-ares/c-ares/blob/v1.34.5/CMakeLists.txt#L49
+        # C++ requers for tests during a build. Toolchain-proper
         - {{ compiler("cxx") }}
         - cmake  # [win]
         # cmake on unix depends on c-ares. This breaks the cycle.
