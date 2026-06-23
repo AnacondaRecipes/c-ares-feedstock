@@ -35,6 +35,7 @@ if errorlevel 1 exit /b 1
 if "%PKG_NAME:~-6%" == "static" (
 echo "Testing..."
 @REM Skip tests that fail due to environment limitations (IPv6, DNS ANY queries, localhost reverse lookup)
+@REM Matches upstream skips: https://github.com/c-ares/c-ares/blob/main/ci/test.sh#L6-L10
 set GTEST_FILTER=-*LiveGetHostByNameV6*:*LiveSearchANY*:*LiveGetLocalhostByAddrV4*
 ctest --output-on-failure
 if errorlevel 1 exit /b 1
